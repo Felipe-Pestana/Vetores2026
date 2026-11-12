@@ -1,28 +1,48 @@
-﻿char[] numbers = new char [4];
-int contador = 0;
+﻿int tamanho = 3;
+char[] vetor1 = new char[tamanho];
+string[] vetor2 = new string[tamanho * 2];
 
-void PopulaVetor(int contador)
+void PopularVetor(char[] vetor)
 {
-    
-    do
+    for (int i = 0; i < vetor.Length; i++)
     {
-        //Console.WriteLine("Informe o numero desejado na posição " + contador);
-        Console.WriteLine($"Informe o numero desejada posição {contador}");
-        numbers[contador] = char.Parse(Console.ReadLine());
-        contador++;
-
-    } while (contador < numbers.Length);
-}
-
-void MostraVetor()
-{
-    contador = 0;
-    while (contador < numbers.Length)
-    {
-        Console.Write($"[{numbers[contador]}] ");
-        contador++;
+        Console.WriteLine("Informe a letra desejada: ");
+        vetor[i] = char.Parse(Console.ReadLine()!);
     }
 }
 
-PopulaVetor(contador);
-MostraVetor();
+int ConverterASCII(char letra)
+{
+    return (int)letra;
+}
+
+void CriarVetorASCII()
+{
+    for (int i = 0; i < vetor2.Length; i+=2)
+    {
+        vetor2[i] = vetor1[i/2].ToString();
+        vetor2[i+1] = ConverterASCII(vetor1[i/2]).ToString();
+    }
+}
+
+void ExibirVetor(string[] vetor)
+{
+    for (int i = 0; i < vetor.Length; i++)
+    {
+        Console.Write($"[{vetor[i]}] ");
+    }
+    Console.Write("\n");
+}
+
+PopularVetor(vetor1);
+
+string[] temp = new string[vetor1.Length];
+
+for(int i = 0; i < vetor1.Length; i++)
+{
+    temp[i] = vetor1[i].ToString();
+}
+
+ExibirVetor(temp);
+CriarVetorASCII();
+ExibirVetor(vetor2);
